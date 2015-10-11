@@ -1,3 +1,3 @@
 # Algorithms
 
-Practicing some algorithms.
+Developing some algorithms.
