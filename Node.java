@@ -1,10 +1,10 @@
+package TreesAndGraphs;
+
 /**
  * @author Adriana Fuentes
  *
  * Class Node to construct tree or graph
  */
- 
-package TreesAndGraphs;
  
 public class Node {
 	
