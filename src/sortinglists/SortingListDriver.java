@@ -40,6 +40,7 @@ public class SortingListDriver {
 		
 		compEx.sortObjects(strings);
 		assertArrayEquals(sortedExpected, strings);
+		
 	}
 
 }

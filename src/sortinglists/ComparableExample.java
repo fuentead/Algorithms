@@ -24,9 +24,14 @@ public class ComparableExample {
 	 * String implements comparable interface.
 	 * If object sorted does not implement comparable, throws exception. 
 	 */
-	public void sortObjects(String[] strings) {
-		Arrays.sort(strings);
-	
+	public void sortObjects(Object[] object) {
+		
+		try {
+			Arrays.sort(object);
+		}
+		catch(ClassCastException e) {
+			System.out.println("Object does not implement comparable");
+		}
 	}
 	
 	
