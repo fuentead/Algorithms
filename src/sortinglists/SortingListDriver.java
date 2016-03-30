@@ -14,14 +14,6 @@ public class SortingListDriver {
 		compEx = new ComparableExample();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	@Test
 	public void testComparableSortIntExample() {
 		
@@ -40,7 +32,6 @@ public class SortingListDriver {
 		
 		compEx.sortObjects(strings);
 		assertArrayEquals(sortedExpected, strings);
-		
 	}
 
 }
