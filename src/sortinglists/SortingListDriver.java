@@ -1,9 +1,10 @@
 package sortinglists;
 
-import static org.junit.Assert.*;
+/**
+ * Tests for Sorting List algorithms
+ */
 
-import org.junit.AfterClass;
-import org.junit.Before;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class SortingListDriver {
@@ -33,5 +34,4 @@ public class SortingListDriver {
 		compEx.sortObjects(strings);
 		assertArrayEquals(sortedExpected, strings);
 	}
-
 }
