@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 /**
  * Comparable example to show how it is used for natural ordering.
+ * 
  * @author adrianafuentes
- *
  */
 public class ComparableExample {
 	
