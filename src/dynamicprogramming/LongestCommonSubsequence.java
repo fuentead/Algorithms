@@ -6,7 +6,7 @@ package dynamicprogramming;
 /**
  * @author Adriana Fuentes
  *
- * Longest Common Subsequence Problem
+ * Longest Common Subsequence Problems
  * 
  * Problem
  * ------- 
