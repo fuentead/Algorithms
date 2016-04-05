@@ -69,8 +69,7 @@ public class LongestCommonSubsequence {
 					max = T[i][j];
 				}
 			}
-		}
-		
+		}		
 		return max;
 	}
 }
