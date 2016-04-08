@@ -1,6 +1,7 @@
 # Algorithms
 
-Developing some algorithms.
+Algorithms practice.
 
-# Alg 1: Trees_BFS.java
-Searches tree with breath first search for shortest path in tree.
+# Sorting 
+
+# Dynamic Programming
