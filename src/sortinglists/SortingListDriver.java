@@ -5,14 +5,20 @@ package sortinglists;
  */
 
 import static org.junit.Assert.*;
+
+import java.util.*;
+import java.util.Collections;
+
 import org.junit.Test;
 
 public class SortingListDriver {
 	
 	ComparableExample compEx;
+	InsertionSort insertSort;
 	
 	public SortingListDriver() {
 		compEx = new ComparableExample();
+		insertSort = new InsertionSort();
 	}
 
 	@Test
@@ -33,5 +39,27 @@ public class SortingListDriver {
 		
 		compEx.sortObjects(strings);
 		assertArrayEquals(sortedExpected, strings);
+	}
+	
+	@Test
+	public void testCustomObjectSort() {
+		
+		final List<Integer> numbers = Arrays.asList(3,4,8,5,2,7);
+		final List<Integer> sortExpected = Arrays.asList(8,7,5,4,3,2);
+		
+		Collections.sort(numbers, new ComparatorExampleReverseOrder());
+		assertEquals(numbers, sortExpected);
+	}
+	
+	@Test
+	public void testInsertionSortAlgorithm() {
+		
+		final List<Integer> numbers = Arrays.asList(3,4,8,5,2,7);
+		final List<Integer> sortExpected = Arrays.asList(2,3,4,5,7,8);
+		
+		List<Integer> sortedList = insertSort.insertionSortAlgorithm(numbers);
+		System.out.println(sortedList.toString());
+		
+		assertEquals(sortedList, sortExpected);
 	}
 }
