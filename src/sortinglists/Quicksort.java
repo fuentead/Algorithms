@@ -10,13 +10,27 @@ import java.util.*;
  * 
  * Quicksort algorithm example
  *
- * Base Case: list contains 0 or 1 element, already sorted.
+ * Base Case: 
+ * ---------
+ * List contains 0 or 1 element, already sorted.
  * 
- * Algorithm: Choose a pivot element. Remaining element are 
+ * Algorithm:
+ * ---------
+ * Choose a pivot element. Remaining element are 
  * separated into two: those lower than pivot and those 
  * higher than pivot. Method is called recursively in 
  * both lists until reaches the base case.
  * 
+ * Performance Analysis:
+ * --------------------
+ * Average Performance: Separation of elements into two list is O(n).
+ * Each recursive call for each side of the list is O(n log n).
+ * 
+ * Worst Case Performance: It is O(n^2). Choice of pivot can make a 
+ * difference.
+ * 
+ * Each recursive call is independent of any other sorting necessary,
+ * and could be performed in parallel.
  */
 public class Quicksort {
 
