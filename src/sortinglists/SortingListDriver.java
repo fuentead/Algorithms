@@ -15,10 +15,12 @@ public class SortingListDriver {
 	
 	ComparableExample compEx;
 	InsertionSort insertSort;
+	Quicksort qsort;
 	
 	public SortingListDriver() {
 		compEx = new ComparableExample();
 		insertSort = new InsertionSort();
+		qsort = new Quicksort();
 	}
 
 	@Test
@@ -61,5 +63,17 @@ public class SortingListDriver {
 		System.out.println(sortedList.toString());
 		
 		assertEquals(sortedList, sortExpected);
+	}
+	
+	@Test
+	public void testQuicksort() {
+		final List<Integer> numbers = Arrays.asList(3,4,8,5,2,7);
+		final List<Integer> sortExpected = Arrays.asList(2,3,4,5,7,8);
+		
+		List<Integer> sortedList = qsort.quicksort(numbers);
+		System.out.println("Quicksort " + sortedList.toString());
+		
+		assertEquals(sortedList, sortExpected);
+		
 	}
 }
