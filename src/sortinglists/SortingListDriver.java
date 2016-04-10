@@ -16,11 +16,13 @@ public class SortingListDriver {
 	ComparableExample compEx;
 	InsertionSort insertSort;
 	Quicksort qsort;
+	MergeSort msort;
 	
 	public SortingListDriver() {
 		compEx = new ComparableExample();
 		insertSort = new InsertionSort();
 		qsort = new Quicksort();
+		msort = new MergeSort();
 	}
 
 	@Test
@@ -60,7 +62,7 @@ public class SortingListDriver {
 		final List<Integer> sortExpected = Arrays.asList(2,3,4,5,7,8);
 		
 		List<Integer> sortedList = insertSort.insertionSortAlgorithm(numbers);
-		System.out.println(sortedList.toString());
+		System.out.println("Insertion Sort " + sortedList.toString());
 		
 		assertEquals(sortedList, sortExpected);
 	}
@@ -73,7 +75,17 @@ public class SortingListDriver {
 		List<Integer> sortedList = qsort.quicksort(numbers);
 		System.out.println("Quicksort " + sortedList.toString());
 		
-		assertEquals(sortedList, sortExpected);
+		assertEquals(sortedList, sortExpected);	
+	}
+	
+	@Test
+	public void testMergeSort() {
+		final List<Integer> numbers = Arrays.asList(3,4,8,5,2,7);
+		final List<Integer> sortExpected = Arrays.asList(2,3,4,5,7,8);
 		
+		List<Integer> sortedList = msort.mergesortList(numbers);
+		System.out.println("Mergesort " + sortedList.toString());
+		
+		assertEquals(sortedList, sortExpected);
 	}
 }
