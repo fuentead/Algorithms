@@ -15,10 +15,12 @@ public class DataStructuresDriver {
 	
 	ExtendArrayExample ea;
 	QueueExample q;
+	FindValueBinarySearchTree btfv;
 	
 	public DataStructuresDriver() {
 		ea = new ExtendArrayExample();
 		q = new QueueExample();
+		btfv = new FindValueBinarySearchTree();
 	}
 
 	@Test
@@ -44,5 +46,16 @@ public class DataStructuresDriver {
 		assertEquals(1, num1);
 		assertEquals(2, num2);
 		assertEquals(3, num3);
+	}
+	
+	@Test
+	public void testFindValueBinarySearchTree() {
+
+		Node head = btfv.constructTree();
+		boolean result = btfv.findValue(3, head);	
+		assertEquals(true, result);
+		
+		boolean result2 = btfv.findValue(11, head);	
+		assertEquals(false, result2);	
 	}
 }
