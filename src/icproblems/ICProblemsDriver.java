@@ -1,5 +1,5 @@
 /**
- * 
+ * IC Problems Driver
  */
 package icproblems;
 
@@ -13,17 +13,13 @@ import org.junit.Test;
 public class ICProblemsDriver {
 	
 	BinarySearchTreeSecondLargest bstSL;
+	FindKthToLastLinkedList ktlLL;
 	
 	public ICProblemsDriver() {
 		bstSL = new BinarySearchTreeSecondLargest();
+		ktlLL = new FindKthToLastLinkedList();
 	}
 
-
-	//@Test
-	/*public void test() {
-		fail("Not yet implemented");
-	}*/
-	
 	@Test
 	public void testBSTSecondLargest() {
 		Node head = bstSL.createBST();
@@ -31,5 +27,14 @@ public class ICProblemsDriver {
 		
 		assertEquals(result, 12);
 		System.out.println("Results: " + result);
+	}
+	
+	@Test
+	public void testFindKthToLastLinkedList(){
+		NodeLL head = ktlLL.buildLinkedList();
+		// Find 3rd element to last
+		int result = ktlLL.findKthToLast(3, head);
+		
+		assertEquals(6, result);
 	}
 }
