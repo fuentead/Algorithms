@@ -34,7 +34,6 @@ public class BinarySearchTreeSecondLargest {
 		while(current.right != null) {
 			current = current.right;
 		}
-		System.out.println("Current " + current.data);
 		return current.parent.data;
 	}
 	
