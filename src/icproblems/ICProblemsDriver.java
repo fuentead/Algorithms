@@ -16,11 +16,13 @@ public class ICProblemsDriver {
 	BinarySearchTreeSecondLargest bstSL;
 	FindKthToLastLinkedList ktlLL;
 	MergeCookiesOrders mco;
+	ShuffleArrayInPlace saip;
 	
 	public ICProblemsDriver() {
 		bstSL = new BinarySearchTreeSecondLargest();
 		ktlLL = new FindKthToLastLinkedList();
 		mco = new MergeCookiesOrders();
+		saip = new ShuffleArrayInPlace();
 	}
 
 	@Test
@@ -53,5 +55,13 @@ public class ICProblemsDriver {
 		
 		assertEquals(mergedExpected, mergedList);
 		System.out.println("MergeCookiesOrders " + mergedList);
+	}
+	
+	@Test
+	public void shuffleInPlace() {
+		final List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8);		
+		saip.shuffleInPlace(numbers);
+		
+		System.out.println("Shuffle In Place Result " + numbers);
 	}
 }
