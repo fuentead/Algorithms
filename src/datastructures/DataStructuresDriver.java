@@ -16,11 +16,13 @@ public class DataStructuresDriver {
 	ExtendArrayExample ea;
 	QueueExample q;
 	FindValueBinarySearchTree btfv;
+	InsertBinarySearchTree ibst;
 	
 	public DataStructuresDriver() {
 		ea = new ExtendArrayExample();
 		q = new QueueExample();
 		btfv = new FindValueBinarySearchTree();
+		ibst = new InsertBinarySearchTree();
 	}
 
 	@Test
@@ -54,8 +56,18 @@ public class DataStructuresDriver {
 		Node head = btfv.constructTree();
 		boolean result = btfv.findValue(3, head);	
 		assertEquals(true, result);
+		System.out.println("BST Find Result 1: " + result);
 		
 		boolean result2 = btfv.findValue(11, head);	
 		assertEquals(false, result2);	
+		System.out.println("BST Find Result 2: " + result2);
+	}
+	
+	@Test
+	public void testInsertValueBinarySearchTree() {
+		Node n = ibst.constructTree();
+		boolean result = ibst.insertValueBinarySearchTree(n, 9);
+		
+		assertEquals(true, result);
 	}
 }

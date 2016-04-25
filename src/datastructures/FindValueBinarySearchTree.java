@@ -29,7 +29,6 @@ class Node {
 		this.data = data;
 		right = null;
 		left = null;
-		parent = null;
 	}
 }
 
