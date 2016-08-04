@@ -20,9 +20,9 @@ public class SortingQuicksort {
 	private int Partition(Integer[] data, int istart, int iend) {
 		if(istart >= iend)
 			return -1;
-		int ipivot = istart;				// pivot index
-		int i = istart + 1;					// index for traversing array
-		int p = istart;						// index for middle element	
+		int ipivot = istart; // pivot index
+		int i = istart + 1; // index for traversing array
+		int p = istart; // index for middle element	
 		
 		while(i <= iend) {
 			if(data[i] < data[ipivot]) {
@@ -31,8 +31,8 @@ public class SortingQuicksort {
 			}		
 			i++;
 		}		
-		Swap(data, ipivot, p); 				// Swap pivot with value of index p
-		return p; 							// pivot at index p
+		Swap(data, ipivot, p); // Swap pivot with value of index p
+		return p; // pivot at index p
 	}
 	
 	private void Swap(Integer[] data, int i, int j) {
