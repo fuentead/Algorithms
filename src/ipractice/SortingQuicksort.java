@@ -18,8 +18,6 @@ public class SortingQuicksort {
 	}
 
 	private int Partition(Integer[] data, int istart, int iend) {
-		if (istart >= iend)
-			return -1;
 		int ipivot = istart; // pivot index
 		int i = istart + 1; // index for traversing array
 		int p = istart; // index for elements greater and smaller than pivot
@@ -43,7 +41,7 @@ public class SortingQuicksort {
 
 	public static void main(String[] args) {
 		SortingQuicksort qsort = new SortingQuicksort();
-		Integer[] data = { 33, 56, 20, 12, 78 };
+		Integer[] data = { 33, 56, 20, 12, 78, 89, 45 };
 		qsort.QuickSort(data);
 		for (int i = 0; i < data.length; i++)
 			System.out.print(data[i] + " ");
