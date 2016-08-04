@@ -1,8 +1,7 @@
 package ipractice;
 
 /**
- * @author adrianafuentes
- *
+ * @author Adriana Fuentes
  */
 public class SortingQuicksort {
 	
