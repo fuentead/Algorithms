@@ -6,67 +6,48 @@ package ipractice;
  */
 public class SortingQuicksort {
 	
-	public void QuickSort(int[] arr, int istart, int iend) {	
-		
+	public void QuickSort(Integer[] data) {
+		QuickSort(data, 0, data.length-1);
+	}
+	
+	public void QuickSort(Integer[] data, int istart, int iend) {
 		if(istart >= iend)
 			return;
-
-		int ipivot = Partition(arr, istart, iend);		
-
-		QuickSort(arr, istart, ipivot-1);
-		QuickSort(arr, ipivot, iend);
+		int ipivot = Partition(data, istart, iend);	
+		QuickSort(data, istart, ipivot-1);
+		QuickSort(data, ipivot+1, iend);
 	}
 	
-	private int Partition(int[] arr, int istart, int iend) {
+	private int Partition(Integer[] data, int istart, int iend) {
 		if(istart >= iend)
 			return -1;
+		int ipivot = istart;			// pivot index
+		int i = istart + 1;				// index for traversing array
+		int p = istart;					// index for middle element
 		
-		int pivotVal = arr[istart];
-		int l = istart;
-		int r = iend;
-		
-		while(l <= r) {
-			while(arr[l] < pivotVal)
-				l++;
-			while(arr[r] > pivotVal)
-				r--;
-			
-			if(l <= r)
-				Swap(arr, l, r);
-			l++;
-			r--;
+		while(i <= iend) {
+			if(data[i] < data[ipivot]) {
+				p++;
+				Swap(data, i, p);
+			}		
+			i++;
 		}
-				
-		return istart +1;
+		
+		Swap(data, ipivot, p); // Swap pivot with value of index p
+		return p; // return pivot at index p
 	}
 	
-	private void Swap(int[] arr, int leftVal, int rightVal) {
-		int tmp = arr[leftVal];
-		
-		arr[leftVal] = arr[rightVal];
-		arr[rightVal] = tmp;
+	private void Swap(Integer[] data, int i, int j) {
+		int tmp = data[i];
+		data[i] = data[j];
+		data[j] = tmp;
 	}
 
-
-	public static void main(String[] args) {
-		
-		SortingQuicksort qsort = new SortingQuicksort();
-		
-		int[] arr = new int[7];
-		
-		arr[0] = 2;
-		arr[1] = 7;
-		arr[2] = 8;
-		arr[3] = 6;
-		arr[4] = 5;
-		arr[5] = 4;
-		arr[6] = 1;
-		
-		qsort.QuickSort(arr, 0, arr.length-1);
-		
-		for(int i=0; i<arr.length; i++)
-			System.out.print(arr[i] + " ");
-
-
+	public static void main(String[] args) {		
+		SortingQuicksort qsort = new SortingQuicksort();		
+		Integer[] data = {33, 56, 20, 12, 78};
+		qsort.QuickSort(data);	
+		for(int i=0; i<data.length; i++)
+			System.out.print(data[i] + " ");
 	}
 }
