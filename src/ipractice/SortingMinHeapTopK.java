@@ -16,7 +16,7 @@ public class SortingMinHeapTopK {
 		this.k = k;
 	}
 	
-	public void buildHeap(int[] data) {
+	public void BuildHeap(int[] data) {
 		for(int i=0; i<data.length; i++) {
 			if(minHeap.size() < k) {
 				insert(data[i]);
@@ -30,7 +30,7 @@ public class SortingMinHeapTopK {
 		}
 	}
 	
-	public void insert(int data) {
+	public void Insert(int data) {
 		if(minHeap.size() < k) 
 			minHeap.offer(data);
 		else {
@@ -41,28 +41,28 @@ public class SortingMinHeapTopK {
 		}
 	}
 	
-	public int peek() {
+	public int Peek() {
 		return minHeap.peek();
 	}
 	
-	public int extractMin() {
+	public int ExtractMin() {
 		return minHeap.poll();
 	}
 	
-	public int getSize() {
+	public int GetSize() {
 		return minHeap.size();
 	}
 	
-	public void showHeap() {
+	public void ShowHeap() {
 		System.out.print(minHeap);
 	}
 
 	public static void main(String[] args) {
 		int[] data = {3,4,5,7,1};
 		SortingMinHeapTopK mh = new SortingMinHeapTopK(3);
-		mh.buildHeap(data);	
-		mh.insert(9);
-		mh.insert(15);
-		mh.showHeap();
+		mh.BuildHeap(data);	
+		mh.Insert(9);
+		mh.Insert(15);
+		mh.ShowHeap();
 	}
 }
