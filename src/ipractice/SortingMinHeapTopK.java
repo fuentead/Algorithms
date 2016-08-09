@@ -19,12 +19,12 @@ public class SortingMinHeapTopK {
 	public void BuildHeap(int[] data) {
 		for(int i=0; i<data.length; i++) {
 			if(minHeap.size() < k) {
-				insert(data[i]);
+				Insert(data[i]);
 			}
 			else {
 				if(data[i] > minHeap.peek()) {
-					extractMin();
-					insert(data[i]);
+					ExtractMin();
+					Insert(data[i]);
 				}
 			}
 		}
@@ -35,8 +35,8 @@ public class SortingMinHeapTopK {
 			minHeap.offer(data);
 		else {
 			if( data > minHeap.peek()) {
-				extractMin();
-				insert(data);
+				ExtractMin();
+				Insert(data);
 			}
 		}
 	}
