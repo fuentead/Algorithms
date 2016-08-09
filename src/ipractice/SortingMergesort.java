@@ -16,26 +16,25 @@ public class SortingMergesort {
 		this.aux = new int[size];
 	}
 	
-	public int[] mergesort() {
+	public int[] Mergesort() {
 		if(size < 1)
 			return data;
 		
-		sort(0, size-1);		
+		Sort(0, size-1);		
 		return data;		
 	}
 	
-	private void sort(int low, int high) {
+	private void Sort(int low, int high) {
 		if(low < high) {
 			int mid = low + ((high-low))/2;
-			
-			System.out.println("mid: " + mid + " high: " + high + " low: " + low);
-			sort(low, mid);
-			sort(mid+1, high);
-			merge(low, mid, high);
+
+			Sort(low, mid);
+			Sort(mid+1, high);
+			Merge(low, mid, high);
 		}
 	}
 	
-	private void merge(int low, int mid, int high) {
+	private void Merge(int low, int mid, int high) {
 		
 		// Copy data to auxiliary array
 		for(int i=low; i<=high; i++)
@@ -67,7 +66,7 @@ public class SortingMergesort {
 		}		
 	}
 
-	public void showData() {
+	public void ShowData() {
 		for(int i=0; i< data.length; i++)
 			System.out.print(" " + data[i]);
 	}
@@ -76,7 +75,7 @@ public class SortingMergesort {
 		int [] data = {3, 5, 1, 8, 2, 9, 0};
 		
 		SortingMergesort ms = new SortingMergesort(data);
-		ms.mergesort();
-		ms.showData();		
+		ms.Mergesort();
+		ms.ShowData();		
 	}
 }
