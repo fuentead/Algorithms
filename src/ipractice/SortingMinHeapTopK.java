@@ -59,7 +59,7 @@ public class SortingMinHeapTopK {
 
 	public static void main(String[] args) {
 		int[] data = {3,4,5,7,1};
-		SortingMinHeap2 mh = new SortingMinHeap2(3);
+		SortingMinHeapTopK mh = new SortingMinHeapTopK(3);
 		mh.buildHeap(data);	
 		mh.insert(9);
 		mh.insert(15);
