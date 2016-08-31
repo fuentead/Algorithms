@@ -18,11 +18,11 @@ public class LinkedListZip {
 	
 	private Node zipMerge(Node l1, Node l2) {
 		Node t1 = l1;
-		Node t2 = l2;
-		Node l = l1;
 		t1 = t1.next;
-		l.next = l2;
+		Node t2 = l2;
 		t2 = t2.next;
+		Node l = l1;		
+		l.next = l2;		
 		Node t = l.next;
 				
 		while(t1 != null && t2 != null) {
@@ -44,7 +44,21 @@ public class LinkedListZip {
 		}
 		t.next = null;
 		return l;
-	}	
+	}
+	
+	public Node reverseList(Node l) {
+		Node lr, t;
+		t = l.next;
+		lr = l;
+		lr.next = null;		
+		while(t != null) {
+			Node temp = t;
+			t = t.next;
+			temp.next = lr;
+			lr = temp;
+		}
+		return lr;
+	}
 
 	public Node zipLinkedList(Node n) {
 		int len=0;
@@ -68,8 +82,11 @@ public class LinkedListZip {
 		l2 = t.next;
 		t.next = null;
 
+		// Reverse second list
+		Node lr = reverseList(l2);
+		
 		// Zip two lists
-		Node l  = zipMerge(l1, l2);
+		Node l  = zipMerge(l1, lr);
 		return l;
 	}
 	
@@ -91,6 +108,7 @@ public class LinkedListZip {
 		head.next.next.next = new Node(4);
 		head.next.next.next.next = new Node(5);
 		head.next.next.next.next.next = new Node(6);
+		head.next.next.next.next.next.next = new Node(7);
 		
 		llz.printNodes(head);
 		Node l = llz.zipLinkedList(head);
