@@ -48,7 +48,7 @@ public class GraphsSnakesAndLaddersMatrix {
 			qe = q.poll();
 			if(qe.position == size-1) {
 				System.out.println(qe.position);
-				return qe.position;
+				return qe.pathcost;
 			}
 			else {
 				//q.poll();
@@ -56,7 +56,7 @@ public class GraphsSnakesAndLaddersMatrix {
 				for(int j=1; j<= 6; j++) {				
 					//if(visited[j] == false) {
 					System.out.println("This is position " + qe.position + " pathcost " + qe.pathcost);
-					qEntry e = new qEntry(qe.position +1, qe.pathcost+1);
+					qEntry e = new qEntry(qe.position +j, qe.pathcost+1);
 
 					//visited[j] = true;
 					
