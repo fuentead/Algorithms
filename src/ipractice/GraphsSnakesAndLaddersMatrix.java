@@ -32,41 +32,35 @@ public class GraphsSnakesAndLaddersMatrix {
 	
 	public int minNumDiceThrowsSnakesAndLadders(int[] board, int size) {
 		
-		/*boolean[] visited = new boolean[size];
+		boolean[] visited = new boolean[size];
 		for(int i=0; i<size; i++)
-			visited[i] = false;*/
+			visited[i] = false;
 		
 		Queue<qEntry> q = new LinkedList<qEntry>();
 		qEntry qe = new qEntry(0,0);
 		q.add(qe);
-		//visited[0] = true;
+		visited[0] = true;
 		
 		while(!q.isEmpty()) {
 			
-			// Check if we have reached destination with
-			// value in the queue
+			// Check if we have reached destination
 			qe = q.poll();
 			if(qe.position == size-1) {
-				System.out.println(qe.position);
 				return qe.pathcost;
 			}
 			else {
-				//q.poll();
-				// From current dist in queue, add all dice possibilities
-				for(int j=1; j<= 6; j++) {				
-					//if(visited[j] == false) {
-					System.out.println("This is position " + qe.position + " pathcost " + qe.pathcost);
-					qEntry e = new qEntry(qe.position +j, qe.pathcost+1);
+				// All dice possibilities from current position in the queue.
+				for(int j=1; j<= 6 && ((qe.position + j) < size); j++) {				
+					if(visited[qe.position + j] == false) {
+						qEntry e = new qEntry(qe.position +j, qe.pathcost+1);
 
-					//visited[j] = true;
-					
-					if(e.position < size) {
+						visited[qe.position + j] = true;
+											
 						// Check if there is a ladder or snake
 						if(board[e.position]!=-1)
 							e.position = board[e.position];		
 						q.add(e);
 					}
-				//}
 				}
 			}
 		}	
