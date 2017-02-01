@@ -16,24 +16,16 @@ public class RecBunnyEars {
 	 * Space Complexity: O(n) since using the stack space
 	 * for recursive calls.
 	 */
-	public static int recursionBunnyEars(int n) {
-		  int res =0;
-		  
-		  if(n == 0)
-		    return 0;
-		  if(n % 2 == 0)
-		    res = 3;
-		  if(n % 2 != 0)
-		    res = 2;
-		  
-		  return res + recursionBunnyEars(n-1);
+	public static int recursionBunnyEars(int bunnies) {	  
+		if(bunnies == 0)
+			return 0;
+		else if(bunnies % 2 == 0)
+			return 3 + recursionBunnyEars(bunnies-1);
+		else
+			return 2 + recursionBunnyEars(bunnies-1);
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		int res = recursionBunnyEars(4);
 		System.out.println(res);
 	}
