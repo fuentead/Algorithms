@@ -13,12 +13,12 @@ package ipractice;
  */
 public class RecCountX {
 
-	/* 
-	 * CountX problem solved with recursion
-	 * 
-	 * Time Complexity: O(n)
-	 * Space Complexity: O(n), recursive calls
-	 */
+  /* 
+   * CountX problem solved with recursion
+   * 
+   * Time Complexity: O(n)
+   * Space Complexity: O(n), recursive calls
+   */
   public static int recCountX(String s) {
     if(s.length() == 0)
       return 0;
