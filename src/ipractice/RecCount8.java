@@ -27,10 +27,8 @@ public class RecCount8 {
 		int digit = n % 10;
 		int num = n / 10;
 		
-		if(digit == 8 && is8)
-			return 2 + recCount8Helper(num, true);
-		else if(digit == 8)
-			return 1 + recCount8Helper(num, true);
+		if(digit == 8)
+			return (is8? 2 : 1 ) + recCount8Helper(n/10, true);
 		else
 			return recCount8Helper(num, false);
 	}
