@@ -1,7 +1,7 @@
 package ipractice;
 
 /**
- * @author adrianafuentes
+ * @author Adriana Fuentes
  * 
  * Given a string, compute recursively (no loops) the number 
  * of times lowercase "hi" appears in the string.
@@ -36,7 +36,13 @@ public class RecCountHi {
    }
    
    public static void main(String[] args) {
-      int res = recCountHi("hihihellohihitumihihihi");
+      int res = recCountHi("xxhixx");
       System.out.println(res);
+      
+      int res2 = recCountHi("xhixhix");
+      System.out.println(res2);
+      
+      int res3 = recCountHi("hi");
+      System.out.println(res3);
    }
 }
