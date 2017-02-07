@@ -21,11 +21,12 @@ public class RecCountAbc {
    public static int recCountAbcHelper(String s, int index) {
       if(index == s.length()-1)
          return 0;
-      else if(s.charAt(index) == 'a' && s.charAt(index+1) == 'b') {
-            if(s.charAt(index+2) == 'c' || s.charAt(index+2) == 'a')
+      else if(index < s.length()-2) {
+         if(s.charAt(index) == 'a' && s.charAt(index+1) == 'b' && (s.charAt(index+2) == 'c' || s.charAt(index+2) == 'a')) {
                return 1 + recCountAbcHelper(s, index+1);
-            else 
-               return recCountAbcHelper(s, index+1);
+         }
+         else 
+            return recCountAbcHelper(s, index+1);       
       }
       else
          return recCountAbcHelper(s, index+1);
