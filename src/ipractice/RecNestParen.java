@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ipractice;
 
 /**
@@ -58,7 +55,6 @@ public class RecNestParen {
       System.out.println(p5);
       
       boolean p6 = recNestParen("");
-      System.out.println(p6);
-      
+      System.out.println(p6);     
    }
 }
