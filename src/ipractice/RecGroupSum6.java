@@ -23,23 +23,24 @@ public class RecGroupSum6 {
     * 
     */
    public static boolean groupSum6(int start, int[] nums, int target) {
-      if(start >= nums.length && target == 0) {
-         return true;        
-      }
-      else if(start >= nums.length && target != 0) {
-         return false;
-      }
-      else {    
-         if(nums[start] == 6)
-            return groupSum6(start+1, nums, target - nums[start]); 
-         else
-            return (groupSum6(start+1, nums, target - nums[start]) || groupSum6(start+1, nums, target)); 
-      }
+      if(start >= nums.length)
+         return target == 0;
+ 
+      if(nums[start] == 6)
+         return groupSum6(start+1, nums, target - nums[start]); 
+      else
+         return (groupSum6(start+1, nums, target - nums[start]) || groupSum6(start+1, nums, target));      
    }
 
    public static void main(String[] args) {
       int[] nums = {5, 6, 2};
       boolean res = groupSum6(0, nums, 8);
       System.out.println(res);
+      
+      boolean res2 = groupSum6(0, nums, 9);
+      System.out.println(res2);
+      
+      boolean res3 = groupSum6(0, nums, 7);
+      System.out.println(res3);
    }
 }
