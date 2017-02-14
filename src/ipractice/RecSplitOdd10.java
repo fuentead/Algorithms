@@ -24,7 +24,7 @@ public class RecSplitOdd10 {
     */
    public static boolean recSplitOdd10Helper(int[] nums, int index, int sum1, int sum2) {
       if(index >= nums.length)
-         return (sum1 % 10 == 0) && (sum2 % 2 !=0);
+         return (sum1 % 10 == 0) && (sum2 % 2 !=0) || (sum2 % 10 == 0) && (sum1 % 2 !=0);
       
       return recSplitOdd10Helper(nums, index+1, sum1 + nums[index], sum2) || recSplitOdd10Helper(nums, index+1, sum1, sum2 + nums[index]);      
    }
