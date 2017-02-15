@@ -28,7 +28,7 @@ public class RecGroupSum {
     * Space Complexity: O(n) due to recursive stack
     */
    public static boolean groupSum(int start, int[] nums, int target) {
-      if(start >= nums.length && target == 0)
+      if(target == 0)
          return true;        
       else if(start >= nums.length && target != 0) 
          return false;
