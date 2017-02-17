@@ -31,26 +31,30 @@ public class SortingSortAllCharactersInString {
       if(s.length() == 0)
          return;
       
-      int[] bucket = new int[26];
+      int[] bucket = new int[256];
       for(int i=0; i<bucket.length; i++)
          bucket[i] = 0;         
       
-      for(int j=0; j<s.length(); j++) {
-         int cnum = s.charAt(j) - 'a';
+      for(int j=0; j<s.length(); j++) {        
+         int cnum = (int) s.charAt(j);
          bucket[cnum]++;
       }
 
       for(int k= 0; k<bucket.length; k++) {
          if(bucket[k] > 0)
             for(int l=0; l<bucket[k]; l++)
-               System.out.print((char)(k+'a') + " ");
+               System.out.print((char)k);
       }     
    }
    public static void main(String[] args) {
-      System.out.println("Test 1: 'adriana'");
-      sortAllChars("adriana");
+      int n = (int)('A');
+      System.out.println(n);
+      System.out.println((char)n);
       
-      System.out.println("\n\nTest 2: 'arturo'");
-      sortAllChars("arturo");
+      System.out.println("Test 1: 'This is easy'");
+      sortAllChars("This is easy");
+      
+      System.out.println("\n\nTest 2: 'Arturo'");
+      sortAllChars("Arturo");
    }
 }
