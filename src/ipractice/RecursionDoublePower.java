@@ -15,9 +15,10 @@ package ipractice;
 public class RecursionDoublePower {
    
    /*
-    * Solution of double Power with recursion.
+    * Solution of Double Power with recursion.
     * 
-    * 
+    * Time Complexity: O(n), one option for recursion.
+    * Space Complexity: O(n) due to recursive stack usage.
     */
    public static double doublePower(double d, int p) {
       if(p == 0)
