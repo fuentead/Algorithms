@@ -61,6 +61,7 @@ public class SortingMergeKSortedArrays {
 		int [][] data = {{1,3,5,7}, {2,4,6,8}, {5,9,13,16}};
 		mka.MergeSortedArrays(data, 3, 4);		
 		
+		// Negative numbers example
 		int[][] data2 = {{-1,-3,-5,-7},{-2,-6,-8,-10}};
 		mka.MergeSortedArrays(data2, 2, 4);
 	}
