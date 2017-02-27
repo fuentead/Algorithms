@@ -5,6 +5,20 @@ import java.util.*;
 
 /**
  * @author Adriana Fuentes
+ * 
+ * Merge two BSTs in O(N1 + N2) time, where N1 and N2 are the 
+ * number of nodes in the two trees respectively. The merged
+ * tree should contain all the elements of both trees and also
+ * be a balanced BST. Finally, print the new tree level by level.
+ * 
+ * Example:
+ * Tree1: 2->1, 3
+ * Tree2: 7->6, 8
+ * 
+ * Output: 
+ * 6
+ * 2 7
+ * 1 3 8
  */
 public class TreeMergeTwoBST {
 	
