@@ -22,7 +22,7 @@ import java.util.*;
  * Negative numbers and zeros are allowed.
  * Assume all arrays are sorted in the same order.
  *
- *	Use a heap to merge the sorted arrays
+ *	Use a heap to merge the sorted arrays.
  */
 public class SortingMergeKSortedArrays {
 	
