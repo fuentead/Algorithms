@@ -1,0 +1,102 @@
+Find and integer not among four billion given ones
+--------------------------------------------------
+
+Given an input file with four billion integers, provide an
+algorithm to generate an integer which is not contained in
+the file. Assume you have a 1 GiB memory. Follow up with 
+what you would do if you have only 10 MiB of memory.
+
+---
+With 1 GiB of memory:
+-------------------
+
+2^10 = 1024 ~ 10^3
+
+1000000000 => 1 billion => 10^9
+1 GB => 10^9 bytes
+
+4 billion integers
+integers => 32 bits
+4 * 10^9 * 4 bytes => 16 * 10^9 bytes => 16 GBytes => 16 GB
+
+32 bits => 2^32 distinct integers
+2^10 = 1024 ~ 10^3
+2^32 = 2^10*2^10*2^10*2^2 = 10^3*10^3*10^3*2^2 = 4*10^9 distinct integers = 4 billion bits distinct integers
+Range: 0 to 2^32-1
+
+1GB=1*10^9*8bits = 8 billion bits in memory
+
+4 billion integers fit into 1GB because:
+4 billion integers => 4*10^9 bit distinct integers can fit into 8 billion (8*10^9) bits in memory
+
+>> Solution: You can use an array bit of 4*10^9 to add what is found in buckets (4 billion buckets). The bucket that is not set to 
+true, will be the missing number.
+
+Example:
+-------
+ Having a 4-bit integer, we can have from 0 to 2^4 distinct combinations of 4 bit ints. 16 buckets are needed.
+ 
+ Numbers| Buckets
+ 0000	| T
+ 0001	| T
+ 0010	| F
+ 0011	| T
+ 0100	| T
+ 0101	| T
+ 0110	| T
+ 0111	| T
+ 1000	| T
+ 1001	| T
+ 1010	| T
+ 1011	| T
+ 1100	| T
+ 1101	| T
+ 1110	| T
+ 1111	| T
+ 
+ From the buckets above, you know that the number missing is 2 or 0010. 
+
+
+---
+With 10MB memory
+----------------
+4 billion integers => 4*10^9*4bytes => 16 GBytes => 16 GB
+
+10MB Memory => 10*10^6 bytes of memory
+
+>> Solution: use half of the buckets to just test the prefix of the bits available. For this
+case is 2^16 buckets.
+
+For the case of 4 bit integers, we can use the prefix of the bits available to find the missing integer.
+
+Example:
+-------
+
+Prefix	 Buckets
+00		| 3
+01		| 4
+10		| 4
+11		| 4
+
+We count how many values have certain prefixes and the one with the lower corresponding value 2^2=4, 
+we will take that and explore the suffix for those values.
+
+For 00 prefix, we explore the suffix 00, 01, 10 and 11.
+
+Suffix	 Buckets
+00		| T
+01		| T
+10		| F
+11		| T
+
+After updating the buckets with the existing suffix, we can see that we have missing 0010 or 2.
+
+
+
+
+
+
+
+
+
+
