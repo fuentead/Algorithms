@@ -38,11 +38,9 @@ public class MinimumWindowSubstring {
          }
          // Repeated character found in s, start search from this character.
          else if(target.containsKey(s.charAt(j)) && target.get(s.charAt(j))) { 
-            Iterator it = target.entrySet().iterator();
-            while(it.hasNext()) {
-               Map.Entry pair = (Map.Entry) it.next();
-               target.put((Character)pair.getKey(), false);
-            }            
+            // Initialize the entire entry set to 0
+            for(char c : target.keySet()) 
+               target.put(c, false);           
             target.put(s.charAt(j), true);
             tcount = 1;
             istart = j;
