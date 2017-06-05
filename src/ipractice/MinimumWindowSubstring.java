@@ -20,6 +20,10 @@ import java.util.*;
  */
 public class MinimumWindowSubstring {
 
+   /*
+    * O(s) Time Complexity
+    * O(t) Space complexity
+    */
    public static String minimumWindowSubstring(String s, String t) {
       List<String> windows = new ArrayList<String>(); // Storage for different windows found.
       Map<Character, Boolean> target = new HashMap<Character, Boolean>(); // Target letters found.
@@ -50,7 +54,7 @@ public class MinimumWindowSubstring {
          else {
             iend = j;
          }
-         // window has been found
+         // window has been found ..
          if(tcount == t.length()) {
             windows.add(s.substring(istart, iend+1));
             istart = iend+1;
