@@ -17,6 +17,9 @@ import java.util.*;
  * ABABABA => ABABA
  * ATCGATCGA => ATCGA
  * banana => ana
+ * 
+ * Once a O(n^2) answer has been given, the interviewer would like to 
+ * know if you know suffix trees. It doesn't have to be implemented.
  */
 public class StringsLongestRepeatedSubstring {
 
@@ -53,9 +56,9 @@ public class StringsLongestRepeatedSubstring {
 
       // Choose longest repeated substring in the map
       for(String keySubstring : map.keySet()) {
-         boolean valueRepeated = map.get(keySubstring);
+         boolean isRepeated = map.get(keySubstring);
          
-         if(valueRepeated) {
+         if(isRepeated) {
             if(keySubstring.length() > maxLen) {
                maxLen = keySubstring.length();
                maxSubstring = keySubstring;
