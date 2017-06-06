@@ -14,70 +14,54 @@ import java.util.*;
  * If multiple substring exist, print any of them
  */
 public class StringLongestSubstringwithAtMostTwoDistinctCharacters {
-   
-   private Set<Character> set;
-  
+
    class ResTuple {
       int maxlen;
-      String maxstring;
-      
+      String maxstring;     
       ResTuple(int maxlen, String maxstring) {
          this.maxlen = maxlen;
          this.maxstring = maxstring;
       }
    }
-   
-   StringLongestSubstringwithAtMostTwoDistinctCharacters() {
-      this.set = new HashSet<Character>();
-   }
 
-   public void longestSubstringTwoCharDiff(String s) {
-      if(s.length() == 0)
-         return;
-      
-      ResTuple res = new ResTuple(0, "");
-      int istart = 0;
-      int iend = 1;
-      set.add(s.charAt(istart));
-      
-      while(set.size() < 2) {
+   public void longestSubstringTwoCharDiff(String s, int index, ResTuple res) {
+      Set<Character> set = new HashSet<Character>();
+      int istart = index;
+      int iend = index;
+  
+      while(set.size() < 2 && iend < s.length()) {
          if(!set.contains(s.charAt(iend)))
             set.add(s.charAt(iend));
          iend++;         
       }
       
-      while(iend < set.size()) {
-         if(set.contains(s.charAt(iend))) 
-            iend++;
-         else {
-            //Get new maxlen and maxstring
-            checkmaxsize(s, res, istart, iend);
+      while(iend < s.length() && set.contains(s.charAt(iend)))         
+         iend++;      
+      checkmaxsize(s, res, istart, iend);      
+   }
+   
+   public void longestSubstringTwoCharDiff(String s) {
+      if(s.length() == 0)
+         return;
 
-            // Move istart to check for next string
-            // and update set with new char
-            istart = iend-1;
-            char charRef = s.charAt(istart);
-            while(s.charAt(istart) == charRef)
-               istart--;
-            set.remove(s.charAt(istart));
-            istart++;
-            set.add(s.charAt(iend));            
-         }
-      }
-      checkmaxsize(s, res, istart, iend);
+      ResTuple res = new ResTuple(0, "");      
+      for(int i=0; i<s.length(); i++) 
+         longestSubstringTwoCharDiff(s, i, res);       
       System.out.println("maxlen: " + res.maxlen + " maxstring: " + res.maxstring);
    }
    
    private ResTuple checkmaxsize(String s, ResTuple res, int istart, int iend) {
       int prevmaxlen = res.maxlen;
-      res.maxlen = Math.max(res.maxlen, (iend-istart)+1);
-      if(prevmaxlen != res.maxlen) 
-         res.maxstring = s.substring(istart, iend+1);      
+      res.maxlen = Math.max(res.maxlen, (iend-istart));
+      if(prevmaxlen < res.maxlen) 
+         res.maxstring = s.substring(istart, iend);      
       return res;
    }
      
    public static void main(String[] args) {
       StringLongestSubstringwithAtMostTwoDistinctCharacters ls = new StringLongestSubstringwithAtMostTwoDistinctCharacters();
-      ls.longestSubstringTwoCharDiff("eceba"); 
+      ls.longestSubstringTwoCharDiff("cbciiiiibaaaaaa"); 
+      ls.longestSubstringTwoCharDiff("eceba");
+      ls.longestSubstringTwoCharDiff("eciiiiiba");
    }
 }
