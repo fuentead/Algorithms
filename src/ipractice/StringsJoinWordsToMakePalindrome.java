@@ -156,10 +156,7 @@ public class StringsJoinWordsToMakePalindrome {
       String[] words = {"bat", "tab", "cat"};
       Tuple t = mp.joinWordsToMakePalindrome(words);
       System.out.println(t.word1 + " : " + t.word2);
-      
-      System.out.print("Trie 1: ");
-      mp.printTrie();
-      
+
       
       System.out.println("\nProblem 2");
       StringsJoinWordsToMakePalindrome mp2 = new StringsJoinWordsToMakePalindrome(); 
@@ -167,9 +164,6 @@ public class StringsJoinWordsToMakePalindrome {
       String[] words2 = {"ab", "deedba"}; 
       Tuple t2 = mp2.joinWordsToMakePalindrome(words2);
       System.out.println(t2.word1 + " : " + t2.word2);
-      
-      System.out.print("Trie 2: ");
-      mp2.printTrie();
       
       System.out.println("\nProblem 3");
       StringsJoinWordsToMakePalindrome mp3 = new StringsJoinWordsToMakePalindrome(); 
