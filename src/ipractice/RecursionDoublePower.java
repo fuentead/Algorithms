@@ -14,8 +14,7 @@ package ipractice;
  */
 public class RecursionDoublePower {
    
-   /*
-    * Solution of Double Power with recursion.
+   /* Solution of Double Power with recursion.
     * 
     * Time Complexity: O(n), one option for recursion.
     * Space Complexity: O(1), due to 
