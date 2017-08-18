@@ -18,37 +18,31 @@ package ipractice;
  */
 public class RecursionSubsetOfASet {
    
-   public static void printSubsetsOfSetHelper(char[] set, int index, boolean notFirst) {
-      if(index >= set.length)
-         return;
-      
-      if(!notFirst) 
-         notFirst = true;
-      else 
-         System.out.print(", ");
-      
-      System.out.print(set[index]);    
-      printSubsetsOfSetHelper(set, index+1, true);
-   }
-
-   public static void printSubsetsOfSet(char[] set) {
+   public static void subsetsSet(char[] set) {
       if(set.length == 0)
-         return;  
-       
-      System.out.print("{{},");
-      for(int i=0; i<set.length-1; i++) {
-         System.out.print("{" + set[i]+"},{");
-         printSubsetsOfSetHelper(set, i, false); 
-         System.out.print("},");
+         return;
+      System.out.print("{");
+      subsetsSetHelper(set, new StringBuilder(), 0);
+      System.out.print("}\n");
+   }
+   
+   private static void subsetsSetHelper(char[] set, StringBuilder included, int index) {
+      if(index >= set.length) {
+         System.out.print("{" + included.toString() + "}");
+         return;
       }
-      System.out.println("{" + set[set.length-1] + "}" + "}");
+       
+      subsetsSetHelper(set, included, index+1);
+      included.append(set[index]);
+      subsetsSetHelper(set, included, index+1);
+      included.deleteCharAt(included.length()-1);
    }
    
    public static void main(String[] args) {
       char[] set = {'x', 'y'};
-      printSubsetsOfSet(set);
+      subsetsSet(set);
       
       char[] set2 = {'1', '2', '3'};
-      printSubsetsOfSet(set2);
+      subsetsSet(set2);
    }
 }
