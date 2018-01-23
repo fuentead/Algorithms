@@ -5,7 +5,7 @@ package ipractice;
  * 
  * Find a number in a sorted 2D array.
  * 
- * You are given a 2d array (NxM) where
+ * Given a 2d array (NxM) where
  * all the numbers (integers) in the array
  * are in increasing order from left to right
  * and top to bottom. You are also given a 
