@@ -1,17 +1,7 @@
 
 # Auto Generated README File
-### Wrangling with Python
-- Just a bunch of katas with Python
-
-- Algorithms + data structures + whatever else the mind wants to play with
-
-- Some recursive code uses rcviz for visualization of a recursive tree - cool stuff! see the rcviz fork.
-
-- Some code uses non-standard libraries
-
-
-
-1. *Arrays2DSearch.java* : Find a number in a sorted 2D array. You are given a 2d array (NxM) where all the numbers (integers) in the array are in increasing order from left to right and top to bottom. You are also given a target number, to be searched inside the array. What is the best way to search and determine if a number is in the array.
+### Algorithms and Data Structures in Java:
+1. *Arrays2DSearch.java* : Find a number in a sorted 2D array. Given a 2d array (NxM) where all the numbers (integers) in the array are in increasing order from left to right and top to bottom. You are also given a target number, to be searched inside the array. What is the best way to search and determine if a number is in the array.
 2. *ArraysAlternatingPositiveNegative.java* : Given an array containing both positive and negative integers, return an array of alternating positive integers and negative integers such that each set of integers are in the same order as in the input array (stable). input {2,3,-4,-9,-1,-7,1,-5,-6} output {2,-4,3,-9,1,-1,-7,-5,-6} Implement it without using any additional space.
 3. *ArraysAreaUnderHistogram.java* : Find the largest rectangular area possible in a given histogram where the largest rectangle can be made of a number of contiguous bars. For simplicity, assume that all bars have same width and the width is 1 unit. For example, consider the following histogram of 7 bars of heights {6,2,5,4,5,2,6}. The largest possible rectangle possible is 12. Max Area = 3 x 4 = 12
 4. *ArraysHammingWeight.java* : Given a large array of 4-byte integers, write a method to find how many total bits are turned on (i.e. 1s are set) inside such an array [Such a digital sum of binary representation of a number, is also called its Hamming Weight]. e.g. 1. If input array has two numbers: 31 and 51, the answer is 9 because 31 has 5 bits turned on (out of 32) and 51 has 4. 2.If input is 2147483647 and 3, the answer is 31 + 2 = 33 Looking for a fast solution, even with extra memory.
