@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author Adriana Fuentes
  *
- * Build a Trie Data Structure
+ * Build a Trie Data Structure.
  */
 public class GraphsTrie {
    
