@@ -1,6 +1,6 @@
 
 # Auto Generated README File
-### Algorithms and Data Structures:
+### Algorithms and Data Structures Problems:
 1. *Arrays2DSearch.java* : Find a number in a sorted 2D array. Given a 2d array (NxM) where all the numbers (integers) in the array are in increasing order from left to right and top to bottom. You are also given a target number, to be searched inside the array. What is the best way to search and determine if a number is in the array.
 2. *ArraysAlternatingPositiveNegative.java* : Given an array containing both positive and negative integers, return an array of alternating positive integers and negative integers such that each set of integers are in the same order as in the input array (stable). input {2,3,-4,-9,-1,-7,1,-5,-6} output {2,-4,3,-9,1,-1,-7,-5,-6} Implement it without using any additional space.
 3. *ArraysAreaUnderHistogram.java* : Find the largest rectangular area possible in a given histogram where the largest rectangle can be made of a number of contiguous bars. For simplicity, assume that all bars have same width and the width is 1 unit. For example, consider the following histogram of 7 bars of heights {6,2,5,4,5,2,6}. The largest possible rectangle possible is 12. Max Area = 3 x 4 = 12
