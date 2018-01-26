@@ -4,7 +4,7 @@ package ipractice;
  * @author Adriana Fuentes
  * 
  * ---
- * Print array in circular way.
+ * Print 2 dimensional array in circular way.
  * ---
  * 1  2  3  4 
  * 12 13 14 5
