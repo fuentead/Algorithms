@@ -1,6 +1,6 @@
 package ipractice;
 
-/*
+/**
  * @author Adriana Fuentes
  * 
  * ---
