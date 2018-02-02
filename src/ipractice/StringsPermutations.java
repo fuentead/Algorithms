@@ -4,7 +4,9 @@ package ipractice;
 /**
  * @author Adriana Fuentes
  *
- * Generate the permutations of a string.
+ * ---
+ * Generate permutations of a string.
+ * ---
  */
 
 public class StringsPermutations {
