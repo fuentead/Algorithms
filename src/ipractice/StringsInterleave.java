@@ -4,8 +4,8 @@ package ipractice;
  * @author Adriana Fuentes
  * 
  * --- 
- * Find if two strings interleave.
- * ---
+ * Find if a string is interleaved of other two strings.
+ * --
  */
 
 public class StringsInterleave {
