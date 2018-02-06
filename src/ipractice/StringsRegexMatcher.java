@@ -5,7 +5,7 @@ package ipractice;
  *
  * ---
  * Regex matcher: Determine if regex pattern is equal to a string. '?' matches any character. '*' matches sequence of characters.
- * ---
+ * --
  */
 public class StringsRegexMatcher {
    
