@@ -29,17 +29,17 @@ public class StringsRegexMatcher {
       for(int i=1; i<=slen; i++) {
          for(int j=1; j<=plen; j++) {
             
-            // Pattern '*'
+            // Pattern '*' matches any sequence of characters.
             // Option 1: Ignore '*' pattern and move to the next character in pattern.
-            // Option 2: char '*' matches with ith character in input.
+            // Option 2: char '*' matches one or more letter in text, move to next char in string.
             if(pattern.charAt(j-1) == '*') {
               dptable[i][j] = dptable[i][j-1] || dptable[i-1][j];
             }
-            // Pattern '?' or characters match
+            // Pattern '?' that matches any character or characters from string and pattern match.
             else if(pattern.charAt(j-1) == '?' || s.charAt(i-1) == pattern.charAt(j-1)) {
                dptable[i][j] = dptable[i-1][j-1];
             }
-            // Characters don't match
+            // Characters don't match.
             else {
                dptable[i][j] = false;
             }
