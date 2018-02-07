@@ -31,6 +31,7 @@ public class StringsKeypadNumberLetterCombinations {
       
       fillKeypad(keypad);
       Node root = buildTrie(dict);  
+      printTrieDFS(root);
       keypadLetterCombinationsHelper(num, 0, dict, keypad, res, root);
    }
    
@@ -86,7 +87,7 @@ public class StringsKeypadNumberLetterCombinations {
       return root;
    }
    
-   private static void printDFS(Node root) {
+   private static void printTrieDFS(Node root) {
       Stack<Node> s = new Stack<Node>();
       s.push(root);
       while(!s.isEmpty()) {
@@ -100,10 +101,11 @@ public class StringsKeypadNumberLetterCombinations {
             }           
          }
       }
+      System.out.print("\n");
    }
 
    public static void main(String[] args) {
       String[] dict = {"AAC", "BAU", "CAT", "BAT"};
-      keypadLetterCombinations("228", dict);     
+      keypadLetterCombinations("228", dict);
    }
 }
