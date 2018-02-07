@@ -1,7 +1,5 @@
 package ipractice;
 
-import java.util.*;
-
 /**
  * @author Adriana Fuentes
  * 
