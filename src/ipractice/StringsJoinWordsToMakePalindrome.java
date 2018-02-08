@@ -2,12 +2,13 @@ package ipractice;
 
 import java.util.*;
 
-
 /**
  * @author Adriana Fuentes
  * 
+ * ---
  * Given a list of words, is there any pair of words that can be joined (in any order) to 
  * form a palindrome?
+ * --
  * 
  * Example 1: Consider a list {bat, tab, cat}. Then bat and tab can be joined together to form a 
  * palindrome.
@@ -21,156 +22,145 @@ import java.util.*;
  * Tries. That may suffice for most interviews.
  */
 public class StringsJoinWordsToMakePalindrome {
-
-   // Trie implementation
-   Node root;
-   static class Node {
-      char c;
-      Map<Character, Node> m;     
-      Node(char c) {
-         m = new HashMap<Character, Node>();
-         this.c = c;
-      }    
-   }
    
-   static class Tuple {
-      boolean isPalindrome;
-      String word1;
-      String word2;
-      Tuple(String word1, String word2, boolean isPalindrome) {
-         this.isPalindrome = isPalindrome;
-         this.word1 = word1;
-         this.word2 = word2;
+   static class Node {
+      boolean end;
+      String endword = "";
+      char character = ' ';
+      Map<Character, Node> nextLetters;
+      Node(char c) {
+         this.end = false;
+         this.endword = "";
+         this.character = c;
+         nextLetters = new HashMap<Character, Node>();
       }
    }
    
-   public StringsJoinWordsToMakePalindrome() {
-      root = new Node('0');
-   }
-   
-   public void add(String s) {
-      if(s.length() == 0)
+   public static void joinWordsToMakePalindrome(String[] data) {
+      if(data.length == 0)
          return;
       
-      Node n = root;
-      for(int i=0; i<s.length(); i++) {
-         if(!n.m.containsKey(s.charAt(i))) 
-            n.m.put(s.charAt(i), new Node(s.charAt(i)));
-         n = n.m.get(s.charAt(i));
-      }     
-   }
-   
-   /*
-    * Compare if current string is a palindrome
-    */
-   public boolean isPalindrome(String s) {
-      if(s.length() == 0 || s.length() == 1)
-         return false;
-
-      int istart = 0;
-      int iend = s.length() - 1;
-      while(istart <= iend) {
-        if(s.charAt(istart) == s.charAt(iend)) {
-           istart++;
-           iend--;
-        }
-        else
-           return false;
-     }
-     return true;
-   }
-   
-   /* 
-    * Lookup to see if palindrome of this s string exists
-    */
-   public Tuple lookup(String s) {
-      StringBuilder sb = new StringBuilder();
-      if(s.length() == 0)
-         return new Tuple("", "", false);
+      List<String> palResList = new ArrayList<String>();    
       
-      Node n = root;
-      for(int i=s.length()-1; i>=0; i--) {        
-         if(!n.m.containsKey(s.charAt(i))) {   
-            // Character not included, check if rest is palindrome.
-            boolean isPal = isPalindrome(s.substring(0, i+1));
-            if(isPal)
-               return new Tuple(s, sb.toString(), true);
-            else
-               return new Tuple(s, sb.toString(), false);
+      // Build trie with reverse words from data
+      Node root = buildTrie(data);      
+      for(int i=0; i<data.length; i++) {
+         String palRes = compareJoinedWordsPalindrome(data[i], root);
+         if(!palRes.equals("")) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(data[i]);
+            sb.append(palRes);
+            palResList.add(sb.toString());
          }
-         else {
-            n = n.m.get(s.charAt(i));
-            sb.append(s.charAt(i));
+      }      
+      printAllPalindromesResults(palResList);
+   }
+   
+   private static Node buildTrie(String[] data) {
+      Node root = new Node('-');
+      Node tmp;
+      for(int i=0; i<data.length; i++) {
+         tmp = root;
+         for(int j=data[i].length()-1; j>=0; j--) {
+            if(!tmp.nextLetters.containsKey(data[i].charAt(j))) {
+               tmp.nextLetters.put(data[i].charAt(j), new Node(data[i].charAt(j)));
+               tmp = tmp.nextLetters.get(data[i].charAt(j));
+               if(j == 0) { // mark in trie if it's the last char in word
+                  tmp.end = true;
+                  tmp.endword = data[i];
+               }
+            }
+            else 
+               tmp = tmp.nextLetters.get(data[i].charAt(j));     
          }
       }
-      return new Tuple(s, sb.toString(), true);
+      printTrie(root);
+      return root;
    }
    
-   public Tuple joinWordsToMakePalindrome(String[] words) {
-      if(words.length == 0)
-         return new Tuple("No", "match", false);
+   private static String compareJoinedWordsPalindrome(String s1, Node trieRoot) {
+      Node tmp = trieRoot;
+      int i;
+      String word2 = "";
+      for(i=0; i<s1.length(); i++) {         
+         if(tmp.nextLetters.containsKey(s1.charAt(i))) 
+            tmp = tmp.nextLetters.get(s1.charAt(i));         
+         else 
+            return "";
+      }
       
-      add(words[0]);
-      for(int i=1; i<words.length; i++) {
-         Tuple t = lookup(words[i]);
-         if(t.isPalindrome)
-            return t;  
-         else
-            add(words[i]);
-      }  
-      return new Tuple("No", "match", false);
+      if(tmp.end)
+         return tmp.endword;
+      else          
+         word2 = dfsCheckPalindromeWords(tmp, i+1); // If not at end of trie, check if rest is a palindrome by itself      
+      return word2;
    }
    
-   public void printTrie(Node n) {
+   private static String dfsCheckPalindromeWords(Node root, int iwpartial) {
+      if(root.end == true)
+         return "";
+      
       Stack<Node> s = new Stack<Node>();
-      System.out.print("\n" + n.c);
-      
-      s.push(n);
+      s.push(root);
       while(!s.isEmpty()) {
-         n = s.pop();         
-         Iterator<Map.Entry<Character, Node>> j = n.m.entrySet().iterator();
-         while(j.hasNext()) {
-            Character c = j.next().getKey();
-            System.out.print(n.m.get(c).c);
-            Node tmp = n.m.get(c);
-            s.push(tmp);
+         Node tmp = s.pop();
+         if(tmp.end == true) {
+            String wordpartial = tmp.endword.substring(iwpartial);
+            boolean isPal = isPalindromeWord(wordpartial);
+            if(isPal)
+               return tmp.endword;
+            else
+               return "";
+         }
+         else {// push all nextLetters in stack
+            for(Node nLetter : tmp.nextLetters.values())
+               s.push(nLetter);
          }
       }
+      return "";
    }
    
-   public void printTrie() {
-      Node n = root;     
-      Iterator<Map.Entry<Character, Node>> j = n.m.entrySet().iterator();
-      while(j.hasNext()) {
-         Character c = j.next().getKey();
-         Node tmp = n.m.get(c);
-         printTrie(tmp);
+   private static boolean isPalindromeWord(String word) {
+      if(word.length() == 1)
+         return true;
+      
+      int ibeg = 0;
+      int iend = word.length()-1;
+      while(ibeg < iend) {
+         if(word.charAt(ibeg) != word.charAt(iend))
+            return false;   
       }
+      return true;
    }
    
-   public static void main(String[] args) {
+   private static void printAllPalindromesResults(List<String> palindromes) {
+      if(palindromes.isEmpty()) {
+         System.out.println("No palindromes");
+         return;
+      }
+         
+      for(String s : palindromes)
+         System.out.println(s);
+   }
+   
+   private static void printTrie(Node root) {
+      if(root.character == ' ')
+         return;
       
-      System.out.println("Problem 1");
-      StringsJoinWordsToMakePalindrome mp = new StringsJoinWordsToMakePalindrome(); 
-      
+      Stack<Node> s = new Stack<Node>();
+      s.push(root);
+      while(!s.isEmpty()) {
+         Node tmp = s.pop();
+         System.out.print(tmp.character + " ");
+         if(tmp.end == false)
+            for(Node n : tmp.nextLetters.values()) 
+               s.push(n);
+      }
+      System.out.print("\n");
+   }
+   
+   public static void main(String[] args) {      
       String[] words = {"bat", "tab", "cat"};
-      Tuple t = mp.joinWordsToMakePalindrome(words);
-      System.out.println(t.word1 + " : " + t.word2);
-
-      
-      System.out.println("\nProblem 2");
-      StringsJoinWordsToMakePalindrome mp2 = new StringsJoinWordsToMakePalindrome(); 
-      
-      String[] words2 = {"ab", "deedba"}; 
-      Tuple t2 = mp2.joinWordsToMakePalindrome(words2);
-      System.out.println(t2.word1 + " : " + t2.word2);
-      
-      System.out.println("\nProblem 3");
-      StringsJoinWordsToMakePalindrome mp3 = new StringsJoinWordsToMakePalindrome(); 
-      
-      String[] words3 = {"ant", "cat", "dog"};
-      Tuple t3 = mp2.joinWordsToMakePalindrome(words3);
-      System.out.print(t3.word1 + " : " + t3.word2);
-      
+      joinWordsToMakePalindrome(words);      
    }
 }
