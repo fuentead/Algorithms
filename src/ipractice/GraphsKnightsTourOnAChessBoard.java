@@ -3,10 +3,12 @@ package ipractice;
 /**
  * @author Adriana Fuentes
  * 
+ * ---
  * Assume you are given a normal chessboard and a knight that moves like a normal chess.
  * You are given two inputs: starting location and ending location in the form of x,y
  * Coordinates. The goal is to calculate and print the shortest path that the knight can 
  * take to the target location.
+ * --
  */
 
 public class GraphsKnightsTourOnAChessBoard {
