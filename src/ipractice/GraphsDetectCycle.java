@@ -5,10 +5,9 @@ import java.util.*;
 /**
  * @author Adriana Fuentes
  *
- * Detect Cycle in a directed graph using colors.
- * WHITE: Vertex not processed.
- * GRAY: Vertex being processed.
- * BLACK: Vertex and all descendants are processed.
+ * ---
+ * Detect Cycle in a directed graph 
+ * --
  */
 public class GraphsDetectCycle extends Graph{
 
@@ -23,37 +22,10 @@ public class GraphsDetectCycle extends Graph{
 	}
 	
 	/*
-	 * BFS method
-	 */
-	/*public boolean detectGraphCycle(List<Integer>[] graph) {
-		Queue<Integer> q = new LinkedList<Integer>();
-		int N = graph.length;
-		Vertices[] visited = new Vertices[N];
-		
-		if(graph.length <=0)
-			return false;
-		
-		for(int i=0; i<N; i++) {
-			visited[i] = Vertices.WHITE;
-		}
-		
-		q.add(0);
-		while(!q.isEmpty()) {
-			int v = q.poll();	
-			visited[v] = Vertices.GRAY;
-			for(int i=0; i < graph[v].size(); i++) {
-				int adjv = graph[v].get(i);				
-				if(visited[adjv] == Vertices.GRAY)
-					return true;
-				q.add(adjv);
-			}
-			visited[v] = Vertices.BLACK;
-		}
-		return false;
-	}*/
-	
-	/*
-	 * DFS Method
+	 * DFS & Color Method
+	 * WHITE: Vertex not processed.
+	 * GRAY: Vertex being processed.
+	 * BLACK: Vertex and all descendants are processed.
 	 */
 	public boolean detectCycleDFSUtil(List<Integer>[] graph, Vertices[] visited, int v) {
 		visited[v] = Vertices.GRAY;
@@ -93,6 +65,44 @@ public class GraphsDetectCycle extends Graph{
 		return false;
 	}
 	
+	
+	/*
+	 * DFS by keeping a Visited Array and Processed Stack
+	 */
+	public boolean detectCycleGraph(List<Integer>[] g, int vertices) {
+	   if(g.length == 0)
+	      return false;
+	   
+	   boolean[] visited = new boolean[vertices];
+	   boolean[] stack = new boolean[vertices];
+	   
+	   for(int i=0; i<vertices; i++) {
+	      boolean hasCycle = detectCycleGraphUtil(i, g, visited, stack);
+	      if(hasCycle)
+	         return true;
+	   }
+	   return false;
+	}
+	
+	private static boolean detectCycleGraphUtil(int v, List<Integer>[] g, boolean[] visited, boolean[] stack) {
+	   
+	   if(visited[v] == false) {
+	      visited[v] = true;
+	      stack[v] = true;
+	      Iterator<Integer> it = g[v].iterator();
+	      while(it.hasNext()) {
+	         Integer n = it.next();
+	         if(!visited[n] && detectCycleGraphUtil(n, g, visited, stack)) {
+	            return true;
+	         }
+	         else if(stack[v])
+	            return true;	            
+	      }
+	   }
+	   stack[v] = false;
+	   return false;
+	}
+	
 	public static void main(String[] args) {
 		
 		GraphsDetectCycle dc = new GraphsDetectCycle();
@@ -109,5 +119,11 @@ public class GraphsDetectCycle extends Graph{
 		List<Integer>[] graphc = dcc.createGraphWithCycle3(3);
 		boolean isCycleDFSc = dcc.detectCycleDFS(graphc);
 		System.out.println("Does Graphc has a Cycle: " + isCycleDFSc);
+		
+		GraphsDetectCycle dcg = new GraphsDetectCycle();
+		int vertices = 3;
+      List<Integer>[] gc = dcg.createGraphWithCycle3(vertices);
+      boolean hasCycle = dcg.detectCycleGraph(gc, vertices);
+      System.out.println("Does Graphd has a Cycle: " + hasCycle);
 	}
 }
