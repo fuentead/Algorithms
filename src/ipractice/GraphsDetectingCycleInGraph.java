@@ -4,12 +4,14 @@ import java.util.*;
 
 /**
  * @author Adriana Fuentes
- *
+ * 
+ * ---
  * Given a directed graph, check whether there 
  * is a cycle in it.
  * 
  * There can be multiple cycles. No need to print.
  * Just return true/ false if there is a cycle.
+ * --
  */
 public class GraphsDetectingCycleInGraph {
    
