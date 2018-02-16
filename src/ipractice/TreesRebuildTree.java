@@ -5,12 +5,14 @@ import java.util.*;
 /**
  * @author Adriana Fuentes
  *
+ * ---
  * Given the in-order and pre-order traversal
  * results of a binary tree as an array, write
  * a function to rebuild the tree. The function
  * should return the pointer to the root node of
  * the tree. Then, take that pointer and print 
  * the tree level by level (level order)
+ * --
  * 
  * Note: One needs to be given in-order traversal
  * (with either pre or post or level), as input,
