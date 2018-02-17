@@ -6,10 +6,12 @@ import java.util.*;
 /**
  * @author Adriana Fuentes
  * 
+ * ---
  * Given K sorted arrays of size N each, merge them and 
  * print the sorted output. Assume N is very large
  * compared to K. N may not even be known. i.e. the arrays
  * could be just sorted streams, e.g. timestamp streams.
+ * --
  * 
  * Input: K=3, N=4
  * arr[][] = {{1,3,5,7},{2,4,6,8},{0,9,10,11}}
@@ -47,6 +49,7 @@ public class SortingMergeKSortedArrays {
 			}			
 		}
 		
+		// Insert last numbers in minHeap
 		for(int j=0; j<k-1; j++) {
 			resArr.add(minHeap.poll());
 		}
