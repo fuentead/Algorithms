@@ -11,7 +11,7 @@ import java.util.*;
  * the right of the array. Only the w numbers can be 
  * seen in the window. Each time the sliding window moves 
  * rightwards by one position. 
- * ---
+ * --
  * Following is an example:
  * The array is [1 3 -1 -3 5 4 6 7], and w is 3.
  * 
@@ -31,54 +31,26 @@ import java.util.*;
  * 
  */
 public class QueueSlidingMaximumWindow {
-   
-   public static void checkWindowQueueContent(int[] data, int i, Queue<Integer> q) {    
-      if(q.isEmpty()) 
-         return;    
-      int index = q.peek();
-      while(!q.isEmpty() && data[index] < data[i]) {
-         q.remove();
-         if(!q.isEmpty()) index = q.peek();
-      } 
-   }
-   
-   public static void printMaxWindowElement(int[] data, Queue<Integer> q) {
-      if(q.isEmpty())
-         return;     
-      int index = q.peek();
-      System.out.println(data[index]);     
-   }
-   
-   public static boolean slidingMaximumWindow(int[] data, int wsize){
-      if(wsize > data.length)
-         return false;
+     
+   public static void maximumSlidingWindow(int[] data, int k) {
+      if(data.length == 0)
+         return;
       
       Queue<Integer> q = new LinkedList<Integer>();
-      int istart, i;
-      istart=0;
-      
-      // Add initial window
-      q.add(0);     
-      for(i=1; i<wsize; i++) {
-        checkWindowQueueContent(data, i, q);
-        q.add(i);
-      }
-      printMaxWindowElement(data, q);
-      
-      // Check consecutive windows
-      for(i=wsize; i<data.length; i++) {
-         istart++;         
-         if(q.peek() < istart)
-            q.remove();
-         checkWindowQueueContent(data, i, q);
+      q.add(0);
+      for(int i=1; i<data.length; i++) {
+         int index = q.peek();
+         while(!q.isEmpty() && (data[index] < data[i] || q.size() >= k))
+            q.poll();
          q.add(i);
-         printMaxWindowElement(data, q);
-      }     
-      return true;
+         index = q.peek();
+         if(i >= k-1)
+            System.out.print(data[index] + " ");
+      }
    }
 
    public static void main(String[] args) {
       int[] data = {1, 3, -2, -3, 5, 4, 6, 7};
-      slidingMaximumWindow(data, 3);
+      maximumSlidingWindow(data, 3);
    }
 }
