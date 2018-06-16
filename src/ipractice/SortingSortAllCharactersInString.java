@@ -11,8 +11,8 @@ package ipractice;
  * ASCII values. You can overwrite the existing array.
  * 
  * Solution Complexity: Aim for linear time and constant
- * additional space.
- * ASCII is limited to 256, that is bound to a range for input.
+ * additional space. Extended ASCII is 256 characters, 
+ * that is bound to a range for input.
  */
 public class SortingSortAllCharactersInString {
 
@@ -21,20 +21,18 @@ public class SortingSortAllCharactersInString {
     * bucket sort. Bucket sort to achieve linear time and 
     * constant space. 
     * 
-    * Letters ins ASCII are from 97-122
+    * Lowercase letters ins ASCII are from 97-122. 26 letters.
+    * ASCII character are from 0-127
+    * ASCII extended characters are from 0-256
     * 
     * Time Complexity: O(n)
-    * Space Complexity: O(256) ~> constant time.
-    * 
+    * Space Complexity: O(26) ~> constant time.
     */
    public static void sortAllChars(String s) {
       if(s.length() == 0)
          return;
       
-      int[] bucket = new int[256];
-      for(int i=0; i<bucket.length; i++)
-         bucket[i] = 0;         
-      
+      int[] bucket = new int[127];
       for(int j=0; j<s.length(); j++) {        
          int cnum = (int) s.charAt(j);
          bucket[cnum]++;
@@ -51,10 +49,10 @@ public class SortingSortAllCharactersInString {
       System.out.println(n);
       System.out.println((char)n);
       
-      System.out.println("Test 1: 'This is easy'");
-      sortAllChars("This is easy");
+      System.out.println("Test 1: 'this is easy'");
+      sortAllChars("this is easy");
       
-      System.out.println("\n\nTest 2: 'Arturo'");
-      sortAllChars("Arturo");
+      System.out.println("\n\nTest 2: 'arturo'");
+      sortAllChars("arturo");
    }
 }
