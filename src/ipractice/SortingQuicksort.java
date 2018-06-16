@@ -42,7 +42,7 @@ public class SortingQuicksort {
 
 	public static void main(String[] args) {
 		SortingQuicksort qsort = new SortingQuicksort();
-		Integer[] data = { 33, 56, 20, 12, 78, 89, 45 };
+		Integer[] data = { 33, 56, 20, 40, 12, 78, 89, 13 };
 		qsort.QuickSort(data);
 		for (int i = 0; i < data.length; i++)
 			System.out.print(data[i] + " ");
