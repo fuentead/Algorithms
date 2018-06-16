@@ -38,10 +38,9 @@ public class SortingMergeKSortedArrays {
 
 	public void MergeSortedArrays(int [][] data, int k, int n) {
 		Init(k,n);
-		
-		// indexes in arrays
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<k; j++) {
+				
+		for(int i=0; i<n; i++) { // indexes in arrays
+			for(int j=0; j<k; j++) { // each array
 				minHeap.add(data[j][i]);
 				if(minHeap.size() == k){
 					resArr.add(minHeap.poll());
