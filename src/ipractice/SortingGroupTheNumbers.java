@@ -14,7 +14,7 @@ package ipractice;
  * be done with easier methods not labeled as sorting but special 
  * case.
  */
-public class SortingGroupTheNumbers {
+public class SortingGroupTheNumbers { 
    
    public static void swap(int[] nums, int istart, int iend) {
       int temp = nums[istart];
@@ -29,7 +29,7 @@ public class SortingGroupTheNumbers {
       int istart = 0;
       int iend = nums.length-1;
       
-      while(istart < iend || istart != iend) {
+      while(istart < iend) {
          if(nums[istart] % 2 == 0)
             istart++;
          else {
