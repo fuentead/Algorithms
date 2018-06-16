@@ -6,9 +6,8 @@ import java.util.*;
  * @author Adriana Fuentes
  * 
  * Find K largest elements from a given stream of numbers.
- * By definition, we don't know the size of the input 
- * stream. Hence, produce k largest elements seen so far,
- * at any given time.
+ * We don't know the size of the input stream. Produce k 
+ * largest elements seen so far, at any given time.
  * 
  *  - Input may or may not be sorted and could have duplicates.
  *  - Represent input stream as an array. Do not rely on its size.
