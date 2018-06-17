@@ -50,7 +50,7 @@ public class SortingDuplicateInLoosePermutation {
          else {
             int n = data[index];
             data[index] = data[n-1];
-            data[n-1] = n;            
+            data[n-1] = data[n];            
          }            
       }
       return -1;
