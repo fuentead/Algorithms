@@ -28,13 +28,13 @@ public class SortingSortAllCharactersInString {
     * ASCII extended characters are from 0-256
     * 
     * Time Complexity: O(n)
-    * Space Complexity: O(26) ~> constant time.
+    * Space Complexity: O(128) ~> constant time.
     */
    public static void sortAllChars(String s) {
       if(s.length() == 0)
          return;
       
-      int[] bucket = new int[127];
+      int[] bucket = new int[128];
       for(int j=0; j<s.length(); j++) {        
          int cnum = (int) s.charAt(j);
          bucket[cnum]++;
@@ -66,7 +66,7 @@ public class SortingSortAllCharactersInString {
     */
    public static void sortALlCharsQuicksort(String s) {
       char[] schar = s.toCharArray();
-      Arrays.sort(schar);
+      //Arrays.sort(schar);
       
       quicksort(schar, 0, schar.length);
       System.out.println(new String(schar));
