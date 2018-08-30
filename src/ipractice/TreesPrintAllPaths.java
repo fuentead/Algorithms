@@ -1,15 +1,10 @@
 package ipractice;
-
-import java.util.*;
-
 /**
  * @author Adriana Fuentes
  *
- * Given a binary tree, print out all of its root-to-leaf
- * paths one per line.
  */
 public class TreesPrintAllPaths {
-   
+
    static class Tuple {
       Node left;
       Node right;
@@ -42,43 +37,66 @@ public class TreesPrintAllPaths {
       return new Tuple(n.left, n.right);
    }
    
-   public static Node addChildrenL(Node n, int dataLeft) {
-      n.left = new Node(dataLeft);      
-      return n.left;
-   }
-   
-   public static Node addChildrenR(Node n, int dataRight) {
-      n.right = new Node(dataRight);     
-      return n.right;
-   }
-   
-   /*
-    * Depth first search can be used to print all nodes
-    * 
-    * Using depth first search to print all the paths
-    */
-   public static void printAllTreePaths(Node n) {
-      if(n==null)
+   public static void printAllPaths(Node n) {
+      if (n == null)
          return;
       
-      Stack<Node> s = new Stack<Node>();
-      s.add(n);
-      while(!s.isEmpty()) {
-         Node temp = s.pop();
-         if(temp != null) {
-            System.out.print(temp.value + " ");
-            s.push(temp.right);
-            s.push(temp.left);
-         }
+      int[] data = new int[100];
+      printAllPathsHelper(n, data, 0);
+   }
+   
+   private static void printArray(int[] data, int len) {
+      int i=0;
+      while(data[i] != 0 && i<len) {
+         System.out.print(data[i] + " ");
+         i++;
+      }
+      System.out.println();
+   }
+   
+   private static void printAllPathsHelper(Node n, int[] data, int index) {
+      if(n == null || index >= data.length) {
+         return;
+      }
+      data[index] = n.value;
+      if(n.left == null && n.right == null)
+         printArray(data, index+1);
+      else {
+         printAllPathsHelper(n.left, data, index+1);
+         printAllPathsHelper(n.right, data, index+1);
       }
    }
-
+   
+   private static void printAllPaths2(Node n) {
+      if(n == null)
+         return;
+      
+      StringBuilder sb = new StringBuilder();
+      printAllPathsHelper2(n, sb);
+   }
+   
+   private static void printAllPathsHelper2(Node n, StringBuilder sb) {
+      if(n == null)
+         return;
+      
+      sb.append(n.value + " ");
+      if(n.right == null && n.left == null) {
+         System.out.println(sb.toString());
+         return;
+      }
+      
+      printAllPathsHelper2(n.left, sb);
+      sb.delete(sb.length()-2, sb.length());
+      printAllPathsHelper2(n.right, sb);
+      sb.delete(sb.length()-2, sb.length());
+   }
+   
    public static void main(String[] args) {
       Node root = addRoot(5);
       Tuple t = addChildren(root, 3, 8);
       addChildren(t.left, 1, 4);
       addChildren(t.right, 6, 10);
       
-      printAllTreePaths(root);
+      printAllPaths2(root);
    }
 }
