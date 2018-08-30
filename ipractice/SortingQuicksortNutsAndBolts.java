@@ -83,7 +83,6 @@ public class SortingQuicksortNutsAndBolts {
 		return m;
 	}
 	
-	
 	private String SwapTempVal(String[] toolA, int index, String val) {
 		String tmp = toolA[index];
 		toolA[index] = val;
@@ -97,7 +96,11 @@ public class SortingQuicksortNutsAndBolts {
 		tool[i] = tool[m];
 		tool[m] = tmp;
 	}
+	
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		String[] nuts = {"N3","N4","N2","N5","N1","N6"};
 		String[] bolts = {"B4", "B1", "B6", "B3", "B5", "B2"};		
