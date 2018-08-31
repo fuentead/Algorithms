@@ -29,13 +29,10 @@ public class RecursionCountTrees {
       if(nodeCount == 0)
          return 1;
       
-      int totalSum = 0;
-      int leftSum = 0;
-      int rightSum = 0; 
-      
+      int totalSum = 0;    
       for(int i=1; i<=nodeCount; i++) {           
-         leftSum = recursionCountTrees(i-1);
-         rightSum = recursionCountTrees(nodeCount-i);           
+         int leftSum = recursionCountTrees(i-1);
+         int rightSum = recursionCountTrees(nodeCount-i);           
          totalSum = totalSum + leftSum*rightSum;          
       } 
       return totalSum;           
