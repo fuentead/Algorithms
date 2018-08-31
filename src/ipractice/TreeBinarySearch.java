@@ -25,7 +25,7 @@ public class TreeBinarySearch {
 		if(start > end)
 			return null;
 		else {
-			mid = (start + end) / 2;
+			mid = (int) Math.ceil((double)(start + end)/ 2);
 			BSTNode n = new BSTNode(data[mid]);
 			n.left = createBSTRecursive(data, start, mid-1);
 			n.right = createBSTRecursive(data, mid+1, end);
@@ -59,5 +59,6 @@ public class TreeBinarySearch {
 		TreeBinarySearch bst = new TreeBinarySearch();			
 		BSTNode root = bst.createBinarySearchTree(data);
 		bst.printBinarySearchTreeBFS(root);
+		
 	}
 }
