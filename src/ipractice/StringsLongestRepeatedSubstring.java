@@ -12,7 +12,7 @@ import java.util.*;
  * Repeated is occurring more than once. It 
  * doesn't matter how many times it occurs 
  * beyond 2 times.
- * ---
+ * --
  * 
  * Examples:
  * 
@@ -167,8 +167,34 @@ public class StringsLongestRepeatedSubstring {
       return maxSubstring;
    }
    
+   public static void longestRepeatedSubstringDP(String s) {
+      if(s.length() == 0)
+         return;
+      
+      int size = s.length();
+      int[][] table = new int[size+1][size+1];
+      
+      int reslen = 0;
+      int index = 0;
+      for(int i=1; i<=size; i++) {
+         for(int j=i+1; j<=size; j++) {
+            if(s.charAt(i-1) == s.charAt(j-1) && table[i-1][j-1] < (j-i)) {
+               table[i][j] = table[i-1][j-1] + 1;
+            }
+            else 
+               table[i][j] = 0;
+            index = Math.max(index, i);
+            reslen = Math.max(reslen, table[i][j]);
+         }        
+      }
+      if(reslen > 0)
+         for(int i=index-reslen+1; i<=size; i++) {
+            System.out.print(s.charAt(i - 1));
+         }
+   }
+   
    public static void main(String[] args) {
-      /*String res = longestRepeatedSubstring("ABABABA");
+      String res = longestRepeatedSubstring("ABABABA");
       System.out.println(res);
       
       String res2 = longestRepeatedSubstring("ATCGATCGA");
@@ -176,12 +202,13 @@ public class StringsLongestRepeatedSubstring {
       
       String res3 = longestRepeatedSubstring("banana");
       System.out.println(res3);
-      */
+      
       String resST = longestRepeatedSubstringSuffixTree("ABABABA");
       System.out.println(resST);
       
       String resST2 = longestRepeatedSubstringSuffixTree("ATCGATCGA");
       System.out.println(resST2);
       
+      longestRepeatedSubstringDP("ATCGATCGA");     
    }
 }
