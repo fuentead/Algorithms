@@ -28,27 +28,16 @@ public class TreeMergeTwoBST {
 		tbs = new TreeBinarySearch();
 	}
 	
-	public List<Integer> convertBSTtoArray(BSTNode root) {
-		List<Integer> l = new ArrayList<Integer>();
-		Queue<BSTNode> q = new LinkedList<BSTNode>();
+	public static void convertBSTtoArrayInOrder(BSTNode root, List<Integer> l) {
 		if(root == null)
-			return l;
-		q.add(root);
-		while(!q.isEmpty()) {
-			BSTNode n = (BSTNode) q.remove();
-			l.add(n.data);
-			if(n.left != null)
-				q.add(n.left);
-			if(n.right != null)
-				q.add(n.right);
-		}
-		return l;
+		   return;
+		convertBSTtoArrayInOrder(root.left, l);
+		l.add(root.data);
+		convertBSTtoArrayInOrder(root.right, l);		
 	}
 
 	public List<Integer> mergeBST(List<Integer> bst1, List<Integer> bst2) {
-
-		List<Integer> mbst = new ArrayList<Integer>();
-		
+		List<Integer> mbst = new ArrayList<Integer>();	
 		int i=0;
 		int j=0;
 		while(i < bst1.size() && j < bst2.size()) {
@@ -71,36 +60,35 @@ public class TreeMergeTwoBST {
 			mbst.add(bst2.get(j));
 			j++;
 		}
-
 		return mbst;
 	}
 	
 	public BSTNode mergeTwoBST(BSTNode node1, BSTNode node2) {
 		
 		// Convert Trees to Arrays
-		List<Integer> bst1 = convertBSTtoArray(node1);
-		List<Integer> bst2 = convertBSTtoArray(node2);
+	   List<Integer> bst1 = new ArrayList<Integer>();
+      List<Integer> bst2 = new ArrayList<Integer>();
+		convertBSTtoArrayInOrder(node1, bst1);
+		convertBSTtoArrayInOrder(node2, bst2);
 		
 		// Merge Two Arrays in Sorted Order
 		List<Integer> mbst = mergeBST(bst1, bst2);
 		int[] mbsta = new int[mbst.size()];
 		int i=0;
-		for(Integer e : mbst)
+		for(Integer e : mbst) 
 			mbsta[i++] = e.intValue();
 
 		// Convert Array to BST
-		BSTNode bstnode = tbs.createBinarySearchTree(mbsta);
-		
+		BSTNode bstnode = tbs.createBinarySearchTree(mbsta);		
 		return bstnode;
 	}
 
 	public static void main(String[] args) {
 		TreeMergeTwoBST mbst = new TreeMergeTwoBST();
 		TreeBinarySearch tbs = new TreeBinarySearch();
-		
-		
-		int[] data1 = {12, 14, 10, 11, 4, 2, 6, 8};
-		int[] data2 = {22, 24, 20, 21, 24, 22, 26, 28};
+
+		int[] data1 = {3, 2, 7};
+		int[] data2 = {8, 5, 10};
 		
 		BSTNode node1 = tbs.createBinarySearchTree(data1);
 		BSTNode node2 = tbs.createBinarySearchTree(data2);
