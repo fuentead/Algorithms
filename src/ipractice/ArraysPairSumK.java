@@ -12,34 +12,41 @@ import java.util.*;
 
 public class ArraysPairSumK {
 
-   public static void pairSumK(int[] data, int k) {     
+   public static boolean pairSumK(int[] data, int k) {     
       Map<Integer, Integer> map = new HashMap<Integer, Integer>();
       
-      //insert values in hashmap
       int val;
       for(int i=0; i<data.length; i++) {
-         if(map.containsKey(i))
-            val = map.get(i);
+         if(map.containsKey(data[i]))
+            val = map.get(data[i]);
          else 
             val = 0;
-         map.put(i, val+1);
+         map.put(data[i], val+1);
       }
       
-      // Print anything found that is less than this number
       for(int i=0; i<data.length; i++) {
          int diff = Math.abs(data[i] - k);
-         if(diff <= data[i]) { // to avoid printing repeated elements
-            if(map.containsKey(diff)) {
-               val = map.get(diff);
-               for(int j=0; j<val; j++)
-                  System.out.println(data[i] + " + " + diff);
-            }  
+         if(map.containsKey(diff)) {
+            if((diff == data[i]) && (map.get(diff) < 2)) 
+               return false;            
+            else     
+               return true;            
          }
-      }    
+      }
+      return false;
    }
    
    public static void main(String[] args) {
       int[] data = {0, 1, 5, 5, 2, 4, 3, 1, 7};  
-      pairSumK(data, 7);
+      boolean res1 = pairSumK(data, 7);
+      System.out.println(res1);
+      
+      int[] data2 = {5,4,2,4};
+      boolean res2 = pairSumK(data2, 8);
+      System.out.println(res2);
+      
+      int[] data3 = {5,1,2,4};
+      boolean res3 = pairSumK(data3, 8);
+      System.out.println(res3);
    }
 }
