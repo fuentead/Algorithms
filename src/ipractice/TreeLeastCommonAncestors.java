@@ -44,13 +44,13 @@ import java.util.*;
  */
 public class TreeLeastCommonAncestors {
    
-   static class TupleResult {
-      boolean found;
-      int value;
+   static class Result {
+      boolean isLCAncestor;
+      Node node;
       
-      public TupleResult(boolean found, int value) {
-         this.found = found;
-         this.value = value;
+      public Result(boolean isLCAncestor, Node n) {
+         this.isLCAncestor = isLCAncestor;
+         this.node = n;
       }
    }
 
@@ -104,27 +104,34 @@ public class TreeLeastCommonAncestors {
       }
    }
    
-   public static TupleResult findLeastCommonAncestor(Node root, int n1, int n2) {
-      if(root == null)
-         return new TupleResult(false, -1);
+   public static Node findLeastCommonAncestor(Node root, int n1, int n2) {
+      Result r = findLeastCommonAncestorHelper(root, n1, n2);
+      if(r.isLCAncestor) 
+         return r.node;
       
-      if(root.value == n1)
-         return new TupleResult(true, -1);
-      else if(root.value == n2)
-         return new TupleResult(true, -1);
+      return null;
+   }
+   
+   private static Result findLeastCommonAncestorHelper(Node root, int n1, int n2) {
+      if(root == null)
+         return new Result(false, null);  
+      
+      else if(root.value == n1 || root.value == n2)
+         return new Result(false, root);
+      
       else {
-         TupleResult r1 = findLeastCommonAncestor(root.left, n1, n2);
-         TupleResult r2 = findLeastCommonAncestor(root.right, n1, n2);
-         if(r1.found == true && r2.found == true) {
-            r1.value = root.value;
+         Result r1 = findLeastCommonAncestorHelper(root.left, n1, n2);
+         if(r1.isLCAncestor)
             return r1;
-         }
-         else if(r2.found == true)
+         
+         Result r2 = findLeastCommonAncestorHelper(root.right, n1, n2);
+         if(r2.isLCAncestor) 
             return r2;
-         else if(r1.found == true)
-            return r1;
-         else
-            return new TupleResult(false, -1);
+            
+         else if(r1.node != null && r2.node != null)
+            return new Result(true, root);
+         else 
+            return r1.node != null ? r1 : r2;
       }
    }
       
@@ -139,13 +146,13 @@ public class TreeLeastCommonAncestors {
       
       printTree(root);
       
-      TupleResult tRes = findLeastCommonAncestor(root, 10, 20);
-      System.out.println("\nResult " + tRes.value);
+      Node n = findLeastCommonAncestor(root, 10, 20);
+      System.out.println("\nResult " + n.value);
       
-      TupleResult tRes2 = findLeastCommonAncestor(root, 50, 80);
-      System.out.println("\nResult " + tRes2.value);
+      Node n2 = findLeastCommonAncestor(root, 50, 80);
+      System.out.println("\nResult " + n2.value);
       
-      TupleResult tRes3 = findLeastCommonAncestor(root, 20, 60);
-      System.out.println("\nResult " + tRes3.value);
+      Node n3 = findLeastCommonAncestor(root, 20, 60);
+      System.out.println("\nResult " + n3.value);
    }
 }
