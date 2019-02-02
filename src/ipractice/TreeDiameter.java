@@ -32,7 +32,6 @@ public class TreeDiameter {
    }
    
    public static void main(String[] args) {
-      // TODO Auto-generated method stub
       TreeDiameter td = new TreeDiameter();
       Node root = td.createNode(1);
       root.left = td.createNode(2);
